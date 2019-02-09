@@ -1,7 +1,7 @@
 # Desafio Front-End da Desbravador Software
 
 ## Instalação
-Primeiro é preciso clonar o repositório: ``git clone 'url'``
+Primeiro é preciso clonar o repositório: ``git clone https://github.com/vinicius98s/desafio-desbravador.git``
 
 Após fazer clonar o repositório é necessário fazer a instalação das dependências do projeto
 
