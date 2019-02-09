@@ -13,7 +13,6 @@ app.set('views', path.join(__dirname, 'src'));
 app.set('view engine', 'ejs');
 
 const baseURL = 'https://api.github.com'
-const accessToken = '?access_token=02a1685d15f35d64e8d8043792133f95a91d38a3'
 
 app.get('/', (req, res) => {
     res.render('index', { data: null });
@@ -25,18 +24,17 @@ app.get('/users', async (req, res) => {
     const repos = req.query.sort ?
         await axios.get(`https://api.github.com/users/${user}/repos`, {
             params: {
-                access_token: '02a1685d15f35d64e8d8043792133f95a91d38a3',
                 sort: req.query.sort
             }
         })
             .then(result => result.data)
             .catch(err => res.render('index', { data: err.response }))
         :
-        await axios.get(`${baseURL}/users/${user}/repos${accessToken}`)
+        await axios.get(`${baseURL}/users/${user}/repos`)
             .then(result => result.data)
             .catch(err => res.render('index', { data: err.response }))
 
-    await axios.get(`${baseURL}/users/${user}${accessToken}`)
+    await axios.get(`${baseURL}/users/${user}`)
         .then(result => res.render('index', { data: result.data, repositories: repos }))
         .catch(err => {
             console.log('Status: ', err.response.status)
@@ -47,7 +45,7 @@ app.get('/users', async (req, res) => {
 app.get('/repos', async (req, res) => {
     const repoName = req.query.repo;
 
-    await axios.get(`${baseURL}/repos/${repoName}${accessToken}`)
+    await axios.get(`${baseURL}/repos/${repoName}`)
         .then(result => {
             return res.render('repositories', { data: result.data });
         })
