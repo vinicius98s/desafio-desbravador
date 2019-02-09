@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt_BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="Challenge Desbravador">
+    <title>Desafio Desbravador</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container p-0 col-12">
+        <div class="form-search">
+            <form action='/users' method="GET">
+                <input type="text" name="name" placeholder="Digite o nome do usuário">
+                <button type="submit"><i class="fas fa-search"></i></button>
+            </form>
+        </div>
+      
+        <% if(data) { %>
+            <% if(data.status === 404) { %>
+                <div class="search-wrapper">
+                    <h1 class="background-title">Desculpe, usuário não encontrado</h1>
+                </div>
+            <% } else if(data.status === 403){ %>
+                <div class="search-wrapper">
+                    <h1 class="background-title">Desculpe, algo deu errado.</h1>
+                </div>
+            <% } else { %>
+                <div class="info-wrapper col-10 row mx-auto">
+                    <div class="col-3 mx-auto">
+                        <a href="<%= data.html_url %>" target="_blank" rel="noopener noreferrer">
+                            <img src="<%= data.avatar_url %>" alt="<%= data.name %>">
+                        </a>
+                        <h2><%= data.name %></h2>
+                        <h2 class="username"><%= data.login %></h2>
+                    </div>
+                    <div class="col-5 mx-auto">
+                        <h2><span>Blog:</span> <a href="<%= data.blog %>" target="_blank" rel="noopener noreferrer"><%= data.blog %></a></h2>
+                        <h2><span>Número de seguidores:</span> <%= data.followers %></h2>
+                        <h2><span>Número de seguidos:</span> <%= data.following %></h2>
+                        <h2><span>Email:</span> <%= data.email ? data.email : 'Não encontrado' %></h2>
+                        <h2><span>Bio:</span> <%= data.bio ? data.bio : 'Não encontrado' %></h2>
+                        <% if (repositories) { %>
+                            <h2><span>Repositórios:</span></h2>
+                            <div class="order">
+                                <h2><span>Ordenar por:</span></h2>
+                                <form action="">
+                                    <input type="text" name="name" hidden value="<%= data.login %>">
+                                    <select id="sort" name="sort">
+                                        <option value="created">Criação</option>
+                                        <option value="updated">Atualizado</option>
+                                        <option value="pushed">Publicado</option>
+                                        <option selected value="full_name">Nome</option>
+                                    </select>
+                                    <input type="submit" value="Filtrar">
+                                </form>
+                            </div>
+                            <ul>
+                                <% if(repositories.length === 0) { %>
+                                    <li>Nenhum resultado encontrado</li>
+                                <% } else {  %>
+                                    <% repositories.forEach((repo) => { %>
+                                        <li>
+                                            <a href="/repos?repo=<%= repo.full_name %>">
+                                                <%= repo.name %>
+                                            </a>
+                                        </li>
+                                    <% }) %>
+                                <% } %>
+                            </ul>
+                        <% } %>
+                    </div>
+                </div>
+            <% } %>
+        <% } else { %>
+            <div class="search-wrapper">
+                <h1 class="background-title">Procure por algum usuário</h1>
+            </div>
+        <% } %>
+    </div>
+
+    <script src="/js/scripts.js"></script>
+</body>
+</html>

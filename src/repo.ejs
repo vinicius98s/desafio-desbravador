@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt_BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="Challenge Desbravador">
+    <title>Desafio Desbravador</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container p-0 col-12">
+        <div class="form-search">
+            <form action='/users' method="GET">
+                <input type="text" name="name" placeholder="Digite o nome do usuário">
+                <button type="submit"><i class="fas fa-search"></i></button>
+            </form>
+        </div>
+      
+        <% if(data) { %>
+            <div class="repo-wrapper col-10 row mx-auto">
+                <h2>
+                    <span>Nome: </span>
+                    <a href="<%= data.html_url %>" target="_blank" rel="noopener noreferrer"><%= data.name %></a>
+                </h2>
+                <h2><span>Descrição: </span> <%= data.description ? data.description : 'Não encontrado' %></h2>
+                <h2><span>Número de estrelas: </span><%= data.stargazers_count %></h2>
+                <h2><span>Linguagem: </span><%= data.language %></h2>
+                <h2><span>Repositório privado: </span><%= data.private ? 'Sim' : 'Não' %></h2>
+            </div>
+        <% } %>
+    </div>
+</body>
+</html>
