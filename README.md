@@ -6,13 +6,13 @@ Primeiro é preciso clonar o repositório: ``git clone https://github.com/vinici
 Após fazer clonar o repositório é necessário fazer a instalação das dependências do projeto
 
 ```
-cd desafio-bravado
+cd desafio-desbravador
 yarn install
 ```
 ou caso esteja usando npm:
 
 ```
-cd desafio-bravado
+cd desafio-desbravador
 npm install
 ```
 
