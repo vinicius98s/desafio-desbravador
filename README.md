@@ -20,7 +20,7 @@ npm install
 Para iniciar o servidor basta digitar no console:
 ``yarn install`` ou ``npm install``
 
-Em seguida navegue até [http:localhost:3000](http:localhost:3000)
+Em seguida navegue até [http://localhost:3000](http://localhost:3000)
 
 ## Preview do projeto:
 ![alt text](./preview.jpg)
