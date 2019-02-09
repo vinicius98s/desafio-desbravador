@@ -23,7 +23,7 @@ Para iniciar o servidor basta digitar no console:
 Em seguida navegue até [http://localhost:3000](http://localhost:3000)
 
 ## Rotas e views
-Todas as rotas são chamadas no [server.js](https://github.com/vinicius98s/desafio-desbravador/blob/master/server.js) e foi utilizado a biblioteca [axios](https://github.com/axios/axios) para poder fazer as requisições.
+Todas as rotas são chamadas no [server.js](https://github.com/vinicius98s/desafio-desbravador/blob/master/server.js) utilizando a biblioteca [axios](https://github.com/axios/axios) para poder fazer as requisições.
 As views são manipuladas com a template engine [EJS](https://ejs.co/)
 
 ## Preview do projeto:
